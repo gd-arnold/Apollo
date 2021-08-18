@@ -1,5 +1,5 @@
-#ifndef VECTOR_2_H
-#define VECTOR_2_H
+#ifndef APOLLO_MATH_VECTOR_2_H
+#define APOLLO_MATH_VECTOR_2_H
 
 #include "apollo.h"
 
