@@ -27,7 +27,7 @@ class Ray {
 
 // Print
 inline std::ostream& operator<<(std::ostream& out, const Ray& r) {
-	return out << "[o=" << r.o << ", d=" << r.d << ", tMax=" << r.tMax << ", time=" << r.time << "]\n";
+	return out << "[o=" << r.o << ", d=" << r.d << ", tMax=" << r.tMax << ", time=" << r.time << "]";
 }
 
 }

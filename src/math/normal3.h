@@ -160,7 +160,7 @@ template<class T> class Normal3 {
 
 // Print
 template <typename T> inline std::ostream& operator<<(std::ostream &out, const Normal3<T> &n) {
-	return out << n.x << ' ' << n.y << ' ' << n.z << '\n';
+	return out << n.x << ' ' << n.y << ' ' << n.z; 
 }
 
 // Scalar multiplication in case of s * n

@@ -146,7 +146,7 @@ template<class T> class Vector3 {
 
 // Print
 template <typename T> inline std::ostream& operator<<(std::ostream &out, const Vector3<T> &v) {
-	return out << v.x << ' ' << v.y << ' ' << v.z << '\n';
+	return out << v.x << ' ' << v.y << ' ' << v.z;
 }
 
 // Scalar multiplication in case of s * v

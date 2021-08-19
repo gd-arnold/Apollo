@@ -83,7 +83,7 @@ template<class T> class Point2 {
 
 // Print
 template <typename T> inline std::ostream& operator<<(std::ostream &out, const Point2<T> &p) {
-	return out << p.x << ' ' << p.y << '\n';
+	return out << p.x << ' ' << p.y;
 }
 
 // Scalar multiplication in case of s * p
