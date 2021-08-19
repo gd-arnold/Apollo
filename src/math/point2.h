@@ -3,6 +3,7 @@
 
 #include "apollo.h"
 #include "vector2.h"
+#include "point3.h"
 
 namespace apollo {
 
@@ -18,7 +19,8 @@ template<class T> class Point2 {
 			y = p.y;
 		}
 
-		// TODO Point3 to Point2 conversion
+		// Point3 to Point2 conversion
+		explicit Point2(const Point3<T> &p) : x(p.x), y(p.y) {}
 
 		// Point type conversion
 		template <typename U> explicit Point2(const Point2<U> &p) 
