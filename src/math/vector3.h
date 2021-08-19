@@ -2,6 +2,7 @@
 #define APOLLO_MATH_VECTOR_3_H
 
 #include "apollo.h"
+#include "normal3.h"
 
 namespace apollo {
 
@@ -11,12 +12,9 @@ template<class T> class Vector3 {
 		Vector3(T u) : x(u), y(u), z(u) {}
 		Vector3(T xx, T yy, T zz) : x(xx), y(yy), z(zz) {}
 
-		// Copy constructor
-		Vector3(const Vector3<T> &v) {
-			x = v.x;
-			y = v.y;
-			z = v.z;
-		}
+		// Copy constructors
+		Vector3(const Vector3<T> &v) : x(v.x), y(v.y), z(v.z) {}
+		explicit Vector3(const Normal3<T> &n) : x(n.x), y(n.y), z(n.z) {}
 		
 		// Assignment operator
 		Vector3<T>& operator=(const Vector3<T> &v) {
@@ -25,7 +23,7 @@ template<class T> class Vector3 {
 			z = v.z;
 			return *this;
 		}
-		
+
 		// Get by index
 		T  operator[](int i) const {
 			if (i == 0)
@@ -139,7 +137,7 @@ template<class T> class Vector3 {
 			y *= invLength;
 			z *= invLength;
 			return *this;
-		}
+		}	
 
 		// Vector3 public data
 		T x, y, z;
@@ -161,11 +159,19 @@ template <typename T> inline T dot(const Vector3<T> &v1, const Vector3<T> &v2) {
 	return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z; 
 }
 
+template <typename T> inline T dot(const Vector3<T> &v1, const Normal3<T> &n1) {
+	return v1.x * n1.x + v1.y * n1.y + v1.z * n1.z; 
+}
+
 template <typename T> inline T absDot(const Vector3<T> &v1, const Vector3<T> &v2) {
 	return std::abs(dot(v1, v2));
 }
 
-// Cross product
+template <typename T> inline T absDot(const Vector3<T> &v1, const Normal3<T> &n1) {
+	return std::abs(dot(v1, n1));
+}
+
+// Cross products
 template <typename T> inline Vector3<T> cross(const Vector3<T> &v1, const Vector3<T> &v2) {
 	double v1x = v1.x, v1y = v1.y, v1z = v1.z;
 	double v2x = v2.x, v2y = v2.y, v2z = v2.z;
@@ -174,13 +180,29 @@ template <typename T> inline Vector3<T> cross(const Vector3<T> &v1, const Vector
 			  (v1x * v2y) - (v1y * v2x));
 }
 
-// Compare vectors
+template <typename T> inline Vector3<T> cross(const Vector3<T> &v1, const Normal3<T> &n1) {
+	double v1x = v1.x, v1y = v1.y, v1z = v1.z;
+	double n1x = n1.x, n1y = n1.y, n1z = n1.z;
+	return Vector3<T>((v1y * n1z) - (v1z * n1y), 
+			  (v1z * n1x) - (v1x * n1z),
+			  (v1x * n1y) - (v1y * n1x));
+}
+
+// Compare vector
 template <typename T> inline bool operator==(const Vector3<T> &v1, const Vector3<T> &v2) {
 	return v1.x == v2.x && v1.y == v2.y && v1.z == v2.z;
 }
 
+template <typename T> inline bool operator==(const Vector3<T> &v1, const Normal3<T> &n1) {
+	return v1.x == n1.x && v1.y == n1.y && v1.z == n1.z;
+}
+
 template <typename T> inline bool operator!=(const Vector3<T> &v1, const Vector3<T> &v2) {
 	return v1.x != v2.x || v1.y != v2.y || v1.z != v2.z;
+}
+
+template <typename T> inline bool operator!=(const Vector3<T> &v1, const Normal3<T> &n1) {
+	return v1.x != n1.x || v1.y != n1.y || v1.z != n1.z;
 }
 
 typedef Vector3<float> Vector3f;
