@@ -13,11 +13,7 @@ template<class T> class Point3 {
 		Point3(T xx, T yy, T zz) : x(xx), y(yy), z(zz) {}
 
 		// Copy constructor
-		Point3(const Point3<T> &p) {
-			x = p.x;
-			y = p.y;
-			z = p.z;
-		}
+		Point3(const Point3<T> &p) : x(p.x), y(p.y), z(p.z) {}
 
 		// Point type conversion
 		template <typename U> explicit Point3(const Point3<U> &p) 

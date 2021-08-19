@@ -14,10 +14,7 @@ template<class T> class Point2 {
 		Point2(T xx, T yy) : x(xx), y(yy) {}
 
 		// Copy constructor
-		Point2(const Point2<T> &p) {
-			x = p.x;
-			y = p.y;
-		}
+		Point2(const Point2<T> &p) : x(p.x), y(p.y) {}
 
 		// Point3 to Point2 conversion
 		explicit Point2(const Point3<T> &p) : x(p.x), y(p.y) {}

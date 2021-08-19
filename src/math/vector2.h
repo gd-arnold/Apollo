@@ -12,10 +12,7 @@ template<class T> class Vector2 {
 		Vector2(T xx, T yy) : x(xx), y(yy) {}
 
 		// Copy constructor
-		Vector2(const Vector2<T> &v) {
-			x = v.x;
-			y = v.y;
-		}
+		Vector2(const Vector2<T> &v) : x(v.x), y(v.y) {}
 		
 		// Assignment operator
 		Vector2<T>& operator=(const Vector2<T> &v) {
