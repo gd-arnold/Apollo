@@ -92,16 +92,16 @@ template <typename T> inline Point2<T> operator*(T s, const Point2<T> &p) {
 }
 
 // Distance between two points
-template <typename T> inline float distance(const Point2<T> &p1, const Point2<T> &p2) {
+template <typename T> inline float Distance(const Point2<T> &p1, const Point2<T> &p2) {
 	return (p1 - p2).length();
 }
 
-template<typename T> inline float distanceSquared(const Point2<T> &p1, const Point2<T> &p2) {
+template<typename T> inline float DistanceSquared(const Point2<T> &p1, const Point2<T> &p2) {
 	return (p1 - p2).lengthSquared();
 }
 
 // Linear interpolation
-template<typename T> inline Point2<T> lerp(float t, const Point2<T> &p1, const Point2<T> &p2) {
+template<typename T> inline Point2<T> Lerp(float t, const Point2<T> &p1, const Point2<T> &p2) {
 	return (1 - t) * p1 + t * p2;
 }
 

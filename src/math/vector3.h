@@ -42,7 +42,7 @@ template<class T> class Vector3 {
 		}
 
 		// Min and Max components
-		T minComponent() const {
+		T MinComponent() const {
 			if (x < y && x < z)
 				return x;
 			if (y < x && y < z)
@@ -50,7 +50,7 @@ template<class T> class Vector3 {
 			return z;
 		}
 
-		T maxComponent() const {
+		T MaxComponent() const {
 			if (x > y && x > z)
 				return x;
 			if (y > x && y > z)
@@ -112,26 +112,26 @@ template<class T> class Vector3 {
 		}
 
 		// Length
-		float lengthSquared() const {
+		float LengthSquared() const {
 			return x*x + y*y + z*z; 
 		}
 
-		float length() const {
+		float Length() const {
 			return std::sqrt(lengthSquared());
 		}
 
 		// Absolute value
-		Vector3<T> abs() const {
+		Vector3<T> Abs() const {
 			return Vector3<T>(std::abs(x), std::abs(y), std::abs(z));
 		}
 
 		// Normalization
-		Vector3<T>  normalized() const {
+		Vector3<T>  Normalized() const {
 			float invLength = 1.0 / length();
 			return Vector3<T>(x * invLength, y * invLength, z * invLength);
 		}
 
-		Vector3<T>& normalize() {
+		Vector3<T>& Normalize() {
 			float invLength = 1.0 / length();
 			x *= invLength;
 			y *= invLength;
@@ -155,24 +155,24 @@ template <typename T> inline Vector3<T> operator*(T s, const Vector3<T> &v) {
 }
 
 // Dot product
-template <typename T> inline T dot(const Vector3<T> &v1, const Vector3<T> &v2) {
+template <typename T> inline T Dot(const Vector3<T> &v1, const Vector3<T> &v2) {
 	return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z; 
 }
 
-template <typename T> inline T dot(const Vector3<T> &v1, const Normal3<T> &n1) {
+template <typename T> inline T Dot(const Vector3<T> &v1, const Normal3<T> &n1) {
 	return v1.x * n1.x + v1.y * n1.y + v1.z * n1.z; 
 }
 
-template <typename T> inline T absDot(const Vector3<T> &v1, const Vector3<T> &v2) {
+template <typename T> inline T AbsDot(const Vector3<T> &v1, const Vector3<T> &v2) {
 	return std::abs(dot(v1, v2));
 }
 
-template <typename T> inline T absDot(const Vector3<T> &v1, const Normal3<T> &n1) {
+template <typename T> inline T AbsDot(const Vector3<T> &v1, const Normal3<T> &n1) {
 	return std::abs(dot(v1, n1));
 }
 
 // Cross products
-template <typename T> inline Vector3<T> cross(const Vector3<T> &v1, const Vector3<T> &v2) {
+template <typename T> inline Vector3<T> Cross(const Vector3<T> &v1, const Vector3<T> &v2) {
 	double v1x = v1.x, v1y = v1.y, v1z = v1.z;
 	double v2x = v2.x, v2y = v2.y, v2z = v2.z;
 	return Vector3<T>((v1y * v2z) - (v1z * v2y), 
@@ -180,7 +180,7 @@ template <typename T> inline Vector3<T> cross(const Vector3<T> &v1, const Vector
 			  (v1x * v2y) - (v1y * v2x));
 }
 
-template <typename T> inline Vector3<T> cross(const Vector3<T> &v1, const Normal3<T> &n1) {
+template <typename T> inline Vector3<T> Cross(const Vector3<T> &v1, const Normal3<T> &n1) {
 	double v1x = v1.x, v1y = v1.y, v1z = v1.z;
 	double n1x = n1.x, n1y = n1.y, n1z = n1.z;
 	return Vector3<T>((v1y * n1z) - (v1z * n1y), 

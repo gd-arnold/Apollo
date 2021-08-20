@@ -31,11 +31,11 @@ template<class T> class Vector2 {
 		}
 
 		// Min and Max components
-		T minComponent() const {
+		T MinComponent() const {
 			return x < y ? x : y;
 		}
 
-		T maxComponent() const {
+		T MaxComponent() const {
 			return x > y ? x : y;
 		}
 		
@@ -89,26 +89,26 @@ template<class T> class Vector2 {
 		}
 
 		// Length
-		float lengthSquared() const {
+		float LengthSquared() const {
 			return x*x + y*y; 
 		}
 
-		float length() const {
+		float Length() const {
 			return std::sqrt(lengthSquared());
 		}
 
 		// Absolute value
-		Vector2<T> abs() const {
+		Vector2<T> Abs() const {
 			return Vector2<T>(std::abs(x), std::abs(y));
 		}
 
 		// Normalization
-		Vector2<T>  normalized() const {
+		Vector2<T>  Normalized() const {
 			float invLength = 1.0 / length();
 			return Vector2<T>(x * invLength, y * invLength);
 		}
 
-		Vector2<T>& normalize() {
+		Vector2<T>& Normalize() {
 			float invLength = 1.0 / length();
 			x *= invLength;
 			y *= invLength;
@@ -131,11 +131,11 @@ template <typename T> inline Vector2<T> operator*(T s, const Vector2<T> &v) {
 }
 
 // Dot product
-template <typename T> inline T dot(const Vector2<T> &v1, const Vector2<T> &v2) {
+template <typename T> inline T Dot(const Vector2<T> &v1, const Vector2<T> &v2) {
 	return v1.x * v2.x + v1.y * v2.y; 
 }
 
-template <typename T> inline T absDot(const Vector2<T> &v1, const Vector2<T> &v2) {
+template <typename T> inline T AbsDot(const Vector2<T> &v1, const Vector2<T> &v2) {
 	return std::abs(dot(v1, v2));
 }
 

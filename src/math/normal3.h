@@ -42,7 +42,7 @@ template<class T> class Normal3 {
 		}
 
 		// Min and Max components
-		T minComponent() const {
+		T MinComponent() const {
 			if (x < y && x < z)
 				return x;
 			if (y < x && y < z)
@@ -50,7 +50,7 @@ template<class T> class Normal3 {
 			return z;
 		}
 
-		T maxComponent() const {
+		T MaxComponent() const {
 			if (x > y && x > z)
 				return x;
 			if (y > x && y > z)
@@ -116,26 +116,26 @@ template<class T> class Normal3 {
 		}
 
 		// Length
-		float lengthSquared() const {
+		float LengthSquared() const {
 			return x*x + y*y + z*z; 
 		}
 
-		float length() const {
+		float Length() const {
 			return std::sqrt(lengthSquared());
 		}
 
 		// Absolute value
-		Normal3<T> abs() const {
+		Normal3<T> Abs() const {
 			return Normal3<T>(std::abs(x), std::abs(y), std::abs(z));
 		}
 
 		// Normalization
-		Normal3<T>  normalized() const {
+		Normal3<T>  Normalized() const {
 			float invLength = 1.0 / length();
 			return Normal3<T>(x * invLength, y * invLength, z * invLength);
 		}
 
-		Normal3<T>& normalize() {
+		Normal3<T>& Normalize() {
 			float invLength = 1.0 / length();
 			x *= invLength;
 			y *= invLength;
@@ -145,11 +145,11 @@ template<class T> class Normal3 {
 
 
 		// Flip a surface normal so that it lies in the same hemisphere as a given vector/normal
-		Normal3<T>& faceForward(const Normal3<T> &n) {
+		Normal3<T>& FaceForward(const Normal3<T> &n) {
 			return dot(*this, n) < 0 ? -*this : *this;
 		}
 
-		Normal3<T>& faceForward(const Vector3<T> &v) {
+		Normal3<T>& FaceForward(const Vector3<T> &v) {
 			return dot(*this, v) < 0 ? -*this : *this;
 		}
 
@@ -169,19 +169,19 @@ template <typename T> inline Normal3<T> operator*(T s, const Normal3<T> &n) {
 }
 
 // Dot products
-template <typename T> inline T dot(const Normal3<T> &n1, const Normal3<T> &n2) {
+template <typename T> inline T Dot(const Normal3<T> &n1, const Normal3<T> &n2) {
 	return n1.x * n2.x + n1.y * n2.y + n1.z * n2.z;
 }
 
-template <typename T> inline T dot(const Normal3<T> &n1, const Vector3<T> &v1) {
+template <typename T> inline T Dot(const Normal3<T> &n1, const Vector3<T> &v1) {
 	return n1.x * v1.x + n1.y * v1.y + n1.z * v1.z;
 }
 
-template <typename T> inline T absDot(const Normal3<T> &n1, const Normal3<T> &n2) {
+template <typename T> inline T AbsDot(const Normal3<T> &n1, const Normal3<T> &n2) {
 	return std::abs(dot(n1, n2));
 }
 
-template <typename T> inline T absDot(const Normal3<T> &n1, const Vector3<T> &v1) {
+template <typename T> inline T AbsDot(const Normal3<T> &n1, const Vector3<T> &v1) {
 	return std::abs(dot(n1, v1));
 }
 
