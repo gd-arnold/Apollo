@@ -14,6 +14,7 @@ template <typename T> class Point2;
 template <typename T> class Point3;
 template <typename T> class Normal3;
 template <typename T> class Bounds2;
+template <typename T> class Bounds3;
 
 // Global constants
 static constexpr float Infinity = std::numeric_limits<float>::infinity();
