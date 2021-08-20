@@ -117,7 +117,7 @@ template<class T> class Vector3 {
 		}
 
 		float Length() const {
-			return std::sqrt(lengthSquared());
+			return std::sqrt(LengthSquared());
 		}
 
 		// Absolute value
@@ -127,12 +127,12 @@ template<class T> class Vector3 {
 
 		// Normalization
 		Vector3<T>  Normalized() const {
-			float invLength = 1.0 / length();
+			float invLength = 1.0 / Length();
 			return Vector3<T>(x * invLength, y * invLength, z * invLength);
 		}
 
 		Vector3<T>& Normalize() {
-			float invLength = 1.0 / length();
+			float invLength = 1.0 / Length();
 			x *= invLength;
 			y *= invLength;
 			z *= invLength;
@@ -164,11 +164,11 @@ template <typename T> inline T Dot(const Vector3<T> &v1, const Normal3<T> &n1) {
 }
 
 template <typename T> inline T AbsDot(const Vector3<T> &v1, const Vector3<T> &v2) {
-	return std::abs(dot(v1, v2));
+	return std::abs(Dot(v1, v2));
 }
 
 template <typename T> inline T AbsDot(const Vector3<T> &v1, const Normal3<T> &n1) {
-	return std::abs(dot(v1, n1));
+	return std::abs(Dot(v1, n1));
 }
 
 // Cross products

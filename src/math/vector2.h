@@ -94,7 +94,7 @@ template<class T> class Vector2 {
 		}
 
 		float Length() const {
-			return std::sqrt(lengthSquared());
+			return std::sqrt(LengthSquared());
 		}
 
 		// Absolute value
@@ -104,12 +104,12 @@ template<class T> class Vector2 {
 
 		// Normalization
 		Vector2<T>  Normalized() const {
-			float invLength = 1.0 / length();
+			float invLength = 1.0 / Length();
 			return Vector2<T>(x * invLength, y * invLength);
 		}
 
 		Vector2<T>& Normalize() {
-			float invLength = 1.0 / length();
+			float invLength = 1.0 / Length();
 			x *= invLength;
 			y *= invLength;
 			return *this;

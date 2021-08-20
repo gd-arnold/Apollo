@@ -94,11 +94,11 @@ template <typename T> inline Point3<T> operator*(T s, const Point3<T> &p) {
 
 // Distance between two points
 template <typename T> inline float Distance(const Point3<T> &p1, const Point3<T> &p2) {
-	return (p1 - p2).length();
+	return (p1 - p2).Length();
 }
 
 template<typename T> inline float DistanceSquared(const Point3<T> &p1, const Point3<T> &p2) {
-	return (p1 - p2).lengthSquared();
+	return (p1 - p2).LengthSquared();
 }
 
 // Linear interpolation
