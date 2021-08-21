@@ -3,6 +3,7 @@
 
 #include "apollo.h"
 #include "matrix.h"
+#include "vector3.h"
 
 namespace apollo {
 
@@ -26,6 +27,11 @@ class Transform {
 		Matrix m;
 		Matrix mInv;
 };
+
+// Common Transformations
+// ======================
+// Translation transformation
+Transform Translate(Vector3f &v);
 
 }
 

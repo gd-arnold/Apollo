@@ -27,4 +27,20 @@ Transform Transform::Inverse() const {
 Transform Transform::Transpose() const {
 	return Transform(m.Transpose(), mInv.Transpose());
 }
+
+// Translation transformation
+Transform Translate(Vector3f &v) {
+	Matrix m(1, 0, 0, v.x,
+		 0, 1, 0, v.y,
+		 0, 0, 1, v.z,
+		 0, 0, 0, 1);
+
+	Matrix mInv(1, 0, 0, -v.x,
+		    0, 1, 0, -v.y,
+		    0, 0, 1, -v.z,
+		    0, 0, 0, 1);
+
+	return Transform(m, mInv);
+}
+
 }
