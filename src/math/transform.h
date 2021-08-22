@@ -32,7 +32,8 @@ class Transform {
 // ======================
 // Translation transformation
 Transform Translate(Vector3f &v);
-
+// Scale transformation
+Transform Scale(float x, float y, float z);
 }
 
 #endif

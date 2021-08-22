@@ -43,4 +43,19 @@ Transform Translate(Vector3f &v) {
 	return Transform(m, mInv);
 }
 
+// Scale transformation
+Transform Scale(float x, float y, float z) {
+	Matrix m(x, 0, 0, 0,
+		 0, y, 0, 0,
+		 0, 0, z, 0,
+		 0, 0, 0, 1);
+
+	Matrix mInv(1.0f/x, 0, 0, 0,
+		    0, 1.0f/y, 0, 0,
+		    0, 0, 1.0f/z, 0,
+		    0, 0, 0, 1);
+
+	return Transform(m, mInv);
+}
+
 }
