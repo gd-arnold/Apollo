@@ -119,4 +119,9 @@ Transform LookAt(const Point3f& pos, const Point3f& look, const Vector3f& up) {
 
 }
 
+// Transformations composition 
+Transform Transform::operator*(const Transform& t) const {
+	return Transform(m * t.m, t.mInv * mInv);
+}
+
 }

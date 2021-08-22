@@ -25,6 +25,9 @@ class Transform {
 		// Get transposed transformation by transposing the two matricies
 		Transform Transpose() const;
 
+		// Transformations composition
+		Transform operator*(const Transform& t) const;
+
 		// Apply transformation to geometries
 		// ==================================
 		template <typename T> inline Point3<T>  operator()(const Point3<T>& p)  const;
