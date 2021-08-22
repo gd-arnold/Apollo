@@ -4,6 +4,7 @@
 #include "apollo.h"
 #include "matrix.h"
 #include "vector3.h"
+#include "point3.h"
 
 namespace apollo {
 
@@ -38,6 +39,8 @@ Transform Scale(float x, float y, float z);
 Transform RotateX(float theta);
 Transform RotateY(float theta);
 Transform RotateZ(float theta);
+// Camera Look-at transformation (used to convert from camera to world space)
+Transform LookAt(const Point3f& pos, const Point3f& look, const Vector3f& up);
 
 }
 

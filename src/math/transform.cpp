@@ -95,4 +95,28 @@ Transform RotateZ(float theta) {
 	return Transform(m, m.Transpose());
 }
 
+// Camera Look-at transformation (used to convert from camera to world space)
+Transform LookAt(const Point3f& pos, const Point3f& look, const Vector3f& up) {
+	// Define camera basis
+	const Vector3f dir = (look - pos).Normalize();
+	const Vector3f right = Cross(up, dir);
+	const Vector3f adjustedUp = Cross(dir, right);
+
+	// Calculate translation values
+	const float x = -(right.x * pos.x + right.y * pos.y + right.z * pos.z);
+	const float y = -(adjustedUp.x * pos.x + adjustedUp.y * pos.y + adjustedUp.z * pos.z);
+	const float z = -(dir.x * pos.x + dir.y * pos.y + dir.z * pos.z);
+
+	Matrix mInv;
+	Matrix m(right.x, 	right.y,	right.z, 	x,
+	  	 adjustedUp.x,  adjustedUp.y,   adjustedUp.z,   y,
+	  	 dir.x, 	dir.y, 		dir.z, 		z,
+	  	 0,		0,		0,		1);
+
+	m.Inverse(mInv);
+
+	return Transform(m, mInv); 
+
+}
+
 }
