@@ -58,4 +58,41 @@ Transform Scale(float x, float y, float z) {
 	return Transform(m, mInv);
 }
 
+// X, Y and Z axis clockwise rotation transformations
+Transform RotateX(float theta) {
+	float sinTheta = std::sin(theta);
+	float cosTheta = std::cos(theta);
+
+	Matrix m(1, 	   0, 	      0, 0,
+		 0, cosTheta, -sinTheta, 0,
+		 0, sinTheta,  cosTheta, 0,
+		 0,	   0, 	      0, 1);
+	
+	return Transform(m, m.Transpose());
+}
+
+Transform RotateY(float theta) {
+	float sinTheta = std::sin(theta);
+	float cosTheta = std::cos(theta);
+
+	Matrix m(cosTheta,  0, sinTheta, 0,
+		 0, 	    1, 0, 	 0,
+		 -sinTheta, 0, cosTheta, 0,
+		 0, 	    0, 0, 	 1);
+	
+	return Transform(m, m.Transpose());
+}
+
+Transform RotateZ(float theta) {
+	float sinTheta = std::sin(theta);
+	float cosTheta = std::cos(theta);
+
+	Matrix m(cosTheta, -sinTheta, 0, 0,
+		 sinTheta,  cosTheta, 0, 0,
+		 0,	    0,	      1, 0,
+		 0,	    0,	      0, 1);
+
+	return Transform(m, m.Transpose());
+}
+
 }

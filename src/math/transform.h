@@ -34,6 +34,11 @@ class Transform {
 Transform Translate(Vector3f &v);
 // Scale transformation
 Transform Scale(float x, float y, float z);
+// X, Y and Z axis clockwise rotation transformations
+Transform RotateX(float theta);
+Transform RotateY(float theta);
+Transform RotateZ(float theta);
+
 }
 
 #endif
