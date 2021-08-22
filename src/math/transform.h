@@ -6,6 +6,7 @@
 #include "vector3.h"
 #include "point3.h"
 #include "normal3.h"
+#include "ray.h"
 
 namespace apollo {
 
@@ -29,6 +30,8 @@ class Transform {
 		template <typename T> inline Point3<T>  operator()(const Point3<T>& p)  const;
 		template <typename T> inline Vector3<T> operator()(const Vector3<T>& v) const;
 		template <typename T> inline Normal3<T> operator()(const Normal3<T>& n) const;
+		inline Ray operator()(const Ray& r) const;
+
 	private:
 		// Transform private data
 		// Matrix and Inverse matrix of the transformation
@@ -76,6 +79,10 @@ template <typename T> inline Normal3<T> Transform::operator()(const Normal3<T>& 
 	const T z = newM.m[8]*n.x + newM.m[9]*n.y + newM.m[10]*n.z;
 
 	return Normal3<T>(x, y, z);
+}
+
+inline Ray Transform::operator()(const Ray& r) const {
+	return Ray((*this)(r.o), (*this)(r.d), r.tMax, r.time);
 }
 
 }
