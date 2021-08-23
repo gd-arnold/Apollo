@@ -18,6 +18,7 @@ template <typename T> class Bounds3;
 class Ray;
 class Matrix;
 class Transform;
+class Shape;
 
 // Global constants
 static constexpr float Infinity = std::numeric_limits<float>::infinity();
