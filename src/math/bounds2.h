@@ -3,6 +3,7 @@
 
 #include "apollo.h"
 #include "point2.h"
+#include "ray.h"
 
 namespace apollo {
 
@@ -32,6 +33,29 @@ template <typename T> class Bounds2 {
 
 		Point2<T>& operator[](int i) {
 			return i == 0 ? pMin : pMax;
+		}
+
+		// Ray-Bounds2 intersection
+		bool Intersect(const Ray& r, float& t1, float& t2) {
+			float tMin = 0;
+			float tMax = r.tMax;
+
+                        for (int i = 0; i < 2; i++) {
+				float invD = 1.0f / r.d[i];
+				float t0 = (pMin[i] - r.o[i]) * invD;		
+				float t1 = (pMax[i] - r.o[i]) * invD;			
+				if (invD < 0.0f)				
+					std::swap(t0, t1);
+				tMin = t0 > tMin ? t0 : tMin;
+				tMax = t1 < tMax ? t1 : tMax;		
+				if (tMin > tMax)		
+					return false;
+			}
+
+			t1 = tMin;
+			t2 = tMax;
+
+			return true;
 		}
 
 		// Enlarge bounding box to contain given point
