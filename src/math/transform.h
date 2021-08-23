@@ -1,5 +1,5 @@
-#ifndef MATH_APOLLO_TRANSFORM_H
-#define MATH_APOLLO_TRANSFORM_H
+#ifndef APOLLO_MATH_TRANSFORM_H
+#define APOLLO_MATH_TRANSFORM_H
 
 #include "apollo.h"
 #include "matrix.h"
