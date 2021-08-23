@@ -28,6 +28,11 @@ Transform Transform::Transpose() const {
 	return Transform(m.Transpose(), mInv.Transpose());
 }
 
+// Check if a transformation changes coordinate system handedness
+bool Transform::ChangesHandedness() const {
+	return m.Determinant3x3() < 0.0f;
+}
+
 // Translation transformation
 Transform Translate(Vector3f &v) {
 	Matrix m(1, 0, 0, v.x,

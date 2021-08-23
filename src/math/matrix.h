@@ -26,6 +26,8 @@ class Matrix {
 		// Matrix determinant
 		float Determinant() const;
 
+		// Upper-left 3x3 submatrix determinant
+		float Determinant3x3() const;
 		// Matrix transpose
 		Matrix Transpose() const;
 			

@@ -25,6 +25,9 @@ class Transform {
 		// Get transposed transformation by transposing the two matricies
 		Transform Transpose() const;
 
+		// Check if a transformation changes coordinate system handedness
+		bool ChangesHandedness() const;
+
 		// Transformations composition
 		Transform operator*(const Transform& t) const;
 
