@@ -27,6 +27,23 @@ template<class T> class Point3 {
 			return *this;
 		}
 
+		// Array indexing to select between point components
+		T operator[](int i) const {
+			if (i == 0)
+				return x;
+			if (i == 1)
+				return y;
+			return z;
+		}
+
+		T& operator[](int i) {
+			if (i == 0)
+				return x;
+			if (i == 1)
+				return y;
+			return z;
+		}
+
 		// Addition and scalar multiplication
 		Point3<T> operator+(const Point3<T> &p) const {
 			return Point3<T>(x + p.x, y + p.y, z + p.z);
