@@ -44,7 +44,7 @@ template<class T> class Point3 {
 			return z;
 		}
 
-		// Addition and scalar multiplication
+		// Point addition
 		Point3<T> operator+(const Point3<T> &p) const {
 			return Point3<T>(x + p.x, y + p.y, z + p.z);
 		}
@@ -53,6 +53,29 @@ template<class T> class Point3 {
 			x += p.x;
 			y += p.y;
 			z += p.z;
+			return *this;
+		}
+		
+		// Scalar addition, subtraction and multiplication
+		Point3<T> operator+(T s) const {
+			return Point3<T>(x + s, y + s, z + s);
+		}
+
+		Point3<T>& operator+=(T s) const {
+			x += s;
+			y += s;
+			z += s;
+			return *this;
+		}
+
+		Point3<T> operator-(T s) const {
+			return Point3<T>(x - s, y - s, z - s);
+		}
+
+		Point3<T>& operator-=(T s) const {
+			x -= s;
+			y -= s;
+			z -= s;
 			return *this;
 		}
 
