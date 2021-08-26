@@ -20,6 +20,7 @@ class Matrix;
 class Transform;
 class Shape;
 class Interaction;
+class SurfaceInteraction;
 
 // Global constants
 static constexpr float Infinity = std::numeric_limits<float>::infinity();
