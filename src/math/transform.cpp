@@ -124,6 +124,27 @@ Transform LookAt(const Point3f& pos, const Point3f& look, const Vector3f& up) {
 
 }
 
+// Apply transformation to geometries
+// ==================================
+SurfaceInteraction Transform::operator()(const SurfaceInteraction& s) const {
+	const Transform &t = *this;	
+	
+	SurfaceInteraction result;
+	result.p() = t(s.p());
+	result.time() = s.time();
+	result.n() = t(s.n()).Normalize();
+	result.wo() = t(s.wo());
+	result.uv() = s.uv();
+	result.dpdu() = t(s.dpdu());
+	result.dpdv() = t(s.dpdv());
+	result.dndu() = s.dndu();
+	result.dndu().Normalize();
+	result.dndv() = s.dndv();
+	result.dndv().Normalize();
+
+	return result;
+}
+
 // Transformations composition 
 Transform Transform::operator*(const Transform& t) const {
 	return Transform(m * t.m, t.mInv * mInv);

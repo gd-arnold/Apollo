@@ -7,6 +7,7 @@
 #include "point3.h"
 #include "normal3.h"
 #include "ray.h"
+#include "interaction.h"
 
 namespace apollo {
 
@@ -37,6 +38,7 @@ class Transform {
 		template <typename T> inline Vector3<T> operator()(const Vector3<T>& v) const;
 		template <typename T> inline Normal3<T> operator()(const Normal3<T>& n) const;
 		inline Ray operator()(const Ray& r) const;
+		SurfaceInteraction operator()(const SurfaceInteraction& s) const;
 
 	private:
 		// Transform private data
@@ -90,6 +92,8 @@ template <typename T> inline Normal3<T> Transform::operator()(const Normal3<T>& 
 inline Ray Transform::operator()(const Ray& r) const {
 	return Ray((*this)(r.o), (*this)(r.d), r.tMax, r.time);
 }
+
+
 
 }
 
