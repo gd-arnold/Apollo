@@ -26,7 +26,7 @@ class Shape {
 		// Compute surface area of a shape
 		virtual float Area() const = 0;
 
-	protected:
+	public:
 		// Transform of the shape from object to world space and vice versa
 		const Transform *objectToWorld, *worldToObject;
 		// Indicates whether shape's surface normal direction must be reversed from the default
