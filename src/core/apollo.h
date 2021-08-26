@@ -19,6 +19,7 @@ class Ray;
 class Matrix;
 class Transform;
 class Shape;
+class Interaction;
 
 // Global constants
 static constexpr float Infinity = std::numeric_limits<float>::infinity();
