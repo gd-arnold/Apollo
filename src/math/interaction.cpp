@@ -9,7 +9,7 @@ namespace apollo {
 	const Point3f& Interaction::p() const { return _p; }
 	Point3f& Interaction::p() { return _p; }
 	const float& Interaction::time() const { return _time; }
-	float Interaction::time() { return _time; }
+	float& Interaction::time() { return _time; }
 	const Vector3f& Interaction::wo() const { return _wo; }
 	Vector3f& Interaction::wo() { return _wo; }
 	const Normal3f& Interaction::n() const { return _n; }

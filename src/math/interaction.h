@@ -11,13 +11,14 @@ namespace apollo {
 
 class Interaction {
 	public:
+		Interaction() {}
 		Interaction(const Point3f &p, const Normal3f &n, const Vector3f &wo, float time);
 		
 		// Accessor methods
 		const Point3f& p() const;
 		Point3f& p();
 		const float& time() const;
-		float time();
+		float& time();
 		const Vector3f& wo() const;
 		Vector3f& wo();
 		const Normal3f& n() const;
@@ -37,6 +38,7 @@ class Interaction {
 // SurfaceInteraction entity represents local information at a point on a surface
 class SurfaceInteraction : public Interaction {
 	public:
+		SurfaceInteraction() {}
 		SurfaceInteraction(const Point3f &p, const Point2f &uv, const Vector3f &wo,
 				   const Vector3f &dpdu, const Vector3f &dpdv,
 				   const Vector3f &dndu, const Vector3f &dndv,
