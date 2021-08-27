@@ -42,12 +42,25 @@ inline bool Quadratic(float a, float b, float c, float &x1, float &x2) {
 	x1 = (- b + dSqrt) / (2 * a);
 	x2 = (- b - dSqrt) / (2 * a);
 	
+	if (x1 > x2)
+		std::swap(x1, x2);
+
 	return true;
 }
 
 // Linear interpolation
 inline float Lerp(float t, float x1, float x2) {
 	return x1 * (1 - t) + t * x2;
+}
+
+// Clamp a variable to a given range
+template <typename T, typename U, typename V>
+inline T Clamp(T n, U low, V high) {
+	if (n < low) 
+		return low;
+	if (n > high) 
+		return high;
+	return n;
 }
 
 }
