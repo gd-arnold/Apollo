@@ -12,7 +12,7 @@ class Sphere : public Shape {
 		Sphere(const Transform* objectToWorld, const Transform* worldToObject, bool reverseOrientation, float radius); 
 			
 		// Check if a sphere is intersected by a ray
-		bool Intersect(const Ray& ray) const override;
+		bool Intersect(const Ray& ray, SurfaceInteraction* surf = nullptr) const override;
 
 		// Sphere bounding box in object coordinates
 		Bounds3f ObjectBound() const override;

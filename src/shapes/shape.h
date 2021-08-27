@@ -5,6 +5,7 @@
 #include "transform.h"
 #include "ray.h"
 #include "bounds3.h"
+#include "interaction.h"
 
 namespace apollo {
 // General shape interface
@@ -16,7 +17,7 @@ class Shape {
 
 		// Check if a shape is intersected by a ray
 		// TODO Create a SurfaceInteraction entity which stores information about the intersected point 
-		virtual bool Intersect(const Ray& ray) const = 0;
+		virtual bool Intersect(const Ray& ray, SurfaceInteraction* surf = nullptr) const = 0;
 
 		// Shape bounding box in object coordinates
 		virtual Bounds3f ObjectBound() const = 0;

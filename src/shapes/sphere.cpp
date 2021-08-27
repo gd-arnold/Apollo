@@ -8,7 +8,7 @@ namespace apollo {
 			bool reverseOrientation, float radius)
 		: Shape(objectToWorld, worldToObject, reverseOrientation), radius(radius) {}
 	
-	bool Sphere::Intersect(const Ray& ray) const {
+	bool Sphere::Intersect(const Ray& ray, SurfaceInteraction* surf) const {
 		// Transform ray to object space
 		Ray r = (*worldToObject)(ray);
 		
