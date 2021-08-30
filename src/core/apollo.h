@@ -21,6 +21,7 @@ class Transform;
 class Shape;
 class Interaction;
 class SurfaceInteraction;
+class Primitive;
 
 // Global constants
 static constexpr float Infinity = std::numeric_limits<float>::infinity();

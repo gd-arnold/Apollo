@@ -1,11 +1,13 @@
 #ifndef APOLLO_MATH_INTERACTION_H
 #define APOLLO_MATH_INTERACTION_H
 
+#include "apollo.h"
 #include "point3.h"
 #include "point2.h"
 #include "normal3.h"
 #include "vector3.h"
 #include "shape.h"
+#include "primitive.h"
 
 namespace apollo {
 
@@ -65,6 +67,8 @@ class SurfaceInteraction : public Interaction {
 	public:
 		// The shape that the point lies on
 		const Shape *shape = nullptr;
+		// Hit primitive
+		const Primitive *primitive = nullptr;
 };
 
 }
