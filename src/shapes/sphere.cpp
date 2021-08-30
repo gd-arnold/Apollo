@@ -33,30 +33,32 @@ namespace apollo {
 			if (tHit > r.tMax)
 				return false;
 		}
-
-		// Compute sphere hit point
-		Point3f p = r(tHit);
-
-		// Compute theta and phi from hit point (sphere's parametric coordinates)
-		float theta = std::acos(Clamp(p.z / radius, -1.0f, 1.0f));
-		float phi = std::atan2(p.y, p.x);
-		if (phi < 0)
-			phi += 2*PI;
 		
-		// Compute (u, v) coords 
-		float u = phi / 2*PI;
-		float v = theta / PI;
+		if (surf) {
+			// Compute sphere hit point
+			Point3f p = r(tHit);
 
-		// TODO Compute partial derivatives of the point
-		Vector3f dpdu(0);
-		Vector3f dpdv(0);
+			// Compute theta and phi from hit point (sphere's parametric coordinates)
+			float theta = std::acos(Clamp(p.z / radius, -1.0f, 1.0f));
+			float phi = std::atan2(p.y, p.x);
+			if (phi < 0)
+				phi += 2*PI;
+		
+			// Compute (u, v) coords 
+			float u = phi / 2*PI;
+			float v = theta / PI;
 
-		// TODO Compute partial derivatives of the normal
-		Vector3f dndu(0);
-		Vector3f dndv(0);
+			// TODO Compute partial derivatives of the point
+			Vector3f dpdu(0);
+			Vector3f dpdv(0);
 
-		// Initialize SurfaceInteraction
-		*surf = (*objectToWorld)(SurfaceInteraction(p, Point2f(u, v), -ray.d, dpdu, dpdv, dndu, dndv, ray.time, this));
+			// TODO Compute partial derivatives of the normal
+			Vector3f dndu(0);
+			Vector3f dndv(0);
+
+			// Initialize SurfaceInteraction
+			*surf = (*objectToWorld)(SurfaceInteraction(p, Point2f(u, v), -ray.d, dpdu, dpdv, dndu, dndv, ray.time, this));
+		}
 
 		return true;
 	}
