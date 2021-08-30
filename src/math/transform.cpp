@@ -137,10 +137,6 @@ SurfaceInteraction Transform::operator()(const SurfaceInteraction& s) const {
 	result.uv() = s.uv();
 	result.dpdu() = t(s.dpdu());
 	result.dpdv() = t(s.dpdv());
-	result.dndu() = s.dndu();
-	result.dndu().Normalize();
-	result.dndv() = s.dndv();
-	result.dndv().Normalize();
 
 	return result;
 }

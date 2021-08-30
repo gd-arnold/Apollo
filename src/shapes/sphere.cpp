@@ -52,12 +52,8 @@ namespace apollo {
 			Vector3f dpdu(0);
 			Vector3f dpdv(0);
 
-			// TODO Compute partial derivatives of the normal
-			Vector3f dndu(0);
-			Vector3f dndv(0);
-
 			// Initialize SurfaceInteraction
-			*surf = (*objectToWorld)(SurfaceInteraction(p, Point2f(u, v), -ray.d, dpdu, dpdv, dndu, dndv, ray.time, this));
+			*surf = (*objectToWorld)(SurfaceInteraction(p, Point2f(u, v), -ray.d, dpdu, dpdv, ray.time, this));
 		}
 
 		return true;

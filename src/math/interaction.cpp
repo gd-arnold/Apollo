@@ -17,9 +17,8 @@ namespace apollo {
 
 	SurfaceInteraction::SurfaceInteraction(const Point3f &p, const Point2f &uv, const Vector3f &wo,
 		const Vector3f &dpdu, const Vector3f &dpdv,          
-		const Vector3f &dndu, const Vector3f &dndv,       
 		float time, const Shape *shape) : Interaction(p, Normal3f(Cross(dpdu, dpdv)), wo, time),
-		_uv(uv), _dpdu(dpdu), _dpdv(dpdv), _dndu(dndu), _dndv(dndv), shape(shape) {
+		_uv(uv), _dpdu(dpdu), _dpdv(dpdv), shape(shape) {
 		// Swap normal direction if shape has reverse orientation or 
 		// object to world transformation changes coordinate system handedness
 		if (shape && (shape->reverseOrientation ^ shape->transformChangesHandedness))
@@ -33,8 +32,4 @@ namespace apollo {
 	Vector3f& SurfaceInteraction::dpdu() { return _dpdu; }
 	const Vector3f& SurfaceInteraction::dpdv() const { return _dpdv; }	
 	Vector3f& SurfaceInteraction::dpdv() { return _dpdv; }
-	const Normal3f& SurfaceInteraction::dndu() const { return _dndu; }		
-	Normal3f& SurfaceInteraction::dndu() { return _dndu; }
-	const Normal3f& SurfaceInteraction::dndv() const { return _dndv; }	
-	Normal3f& SurfaceInteraction::dndv() { return _dndv; }
 }
