@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cmath>
 #include <limits>
+#include <algorithm>
 
 namespace apollo {
 
@@ -22,6 +23,7 @@ class Shape;
 class Interaction;
 class SurfaceInteraction;
 class Primitive;
+class RGB;
 
 // Global constants
 static constexpr float Infinity = std::numeric_limits<float>::infinity();
