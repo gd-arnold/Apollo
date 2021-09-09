@@ -11,11 +11,14 @@ namespace apollo {
 // Perspective camera model
 class Camera {
 	public:
-		Camera(Film& film, float fov);
+		Camera(Film& film, float fov, Point3f& pos, Point3f& look, Vector3f& up);
 
-		// Generate a primary ray given film (x, y) coordinates
+		// Generate primary ray in world space given film (x, y) coordinates
 		Ray GenerateRay(float x, float y);
 	private:
+
+		void InitializeTransformations(Point3f& pos, Point3f& look, Vector3f& up);
+
 		const Film film;
 		
 		// Image aspect ratio (width / height)
@@ -24,9 +27,9 @@ class Camera {
 		// Camera field of view (in radians)
 		const float fov;
 	
-		// Transformation from camera to world space
-		const Transform worldToCamera;
-		const Transform cameraToWorld;
+		// Transformation from world to camera space and vice versa
+		Transform worldToCamera;
+		Transform cameraToWorld;
 };
 
 }
