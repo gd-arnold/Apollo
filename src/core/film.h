@@ -9,7 +9,7 @@ namespace apollo {
 // Film class represents the sensing device in the simulated camera
 class Film {
 	public:
-		Film(Point2i resolution);		
+		Film(Point2i res);		
 	public:
 		const Point2i resolution;
 };

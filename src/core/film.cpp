@@ -2,6 +2,6 @@
 
 namespace apollo {
 
-Film::Film(Point2i resoulution) : resolution(resolution) {}
+Film::Film(Point2i res) : resolution(res) {}
 
 }
