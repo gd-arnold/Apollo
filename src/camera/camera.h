@@ -4,7 +4,6 @@
 #include "apollo.h"
 #include "ray.h"
 #include "transform.h"
-#include "camera.h"
 #include "film.h"
 
 namespace apollo {
