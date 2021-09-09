@@ -25,6 +25,7 @@ class SurfaceInteraction;
 class Primitive;
 class RGB;
 class Film;
+class Camera;
 
 // Global constants
 static constexpr float Infinity = std::numeric_limits<float>::infinity();
