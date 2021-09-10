@@ -3,7 +3,7 @@
 
 namespace apollo {
 
-Camera::Camera(Film& film, float fov, Point3f& pos, Point3f& look, Vector3f& up) : film(film), fov(fov), aspectRatio(film.resolution.x / film.resolution.y) {
+Camera::Camera(Film& film, float fov, Point3f& pos, Point3f& look, Vector3f& up) : film(film), fov(fov), aspectRatio((float)film.resolution.x / film.resolution.y) {
 	InitializeTransformations(pos, look, up);
 }
 
