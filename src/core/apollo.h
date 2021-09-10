@@ -5,6 +5,7 @@
 #include <cmath>
 #include <limits>
 #include <algorithm>
+#include <memory>
 
 namespace apollo {
 
