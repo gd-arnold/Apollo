@@ -114,13 +114,15 @@ class RGB {
 		}
 		
 		inline RGB operator/(const float v) const {
-			return RGB(r / v, g / v, b / v);
+			float invV = 1.0f / v;
+			return RGB(r * invV, g * invV, b * invV);
 		}
 		
 		inline RGB& operator/=(const float v) {
-			r /= v;
-			g /= v;
-			b /= v;
+			float invV = 1.0f / v;
+			r *= invV;
+			g *= invV;
+			b *= invV;
 			return *this;
 		}
 
