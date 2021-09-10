@@ -48,9 +48,9 @@ namespace apollo {
 			float u = phi / 2*PI;
 			float v = theta / PI;
 
-			// TODO Compute partial derivatives of the point
-			Vector3f dpdu(0);
-			Vector3f dpdv(0);
+			// Compute hit point partial derivatives
+			Vector3f dpdu(-p.y, p.x, 0);
+			Vector3f dpdv(p.z * std::cos(phi), p.z * std::sin(phi), -radius * std::sin(theta));
 
 			// Initialize SurfaceInteraction
 			*surf = (*objectToWorld)(SurfaceInteraction(p, Point2f(u, v), -ray.d, dpdu, dpdv, ray.time, this));
