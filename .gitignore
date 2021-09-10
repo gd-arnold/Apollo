@@ -34,3 +34,6 @@
 # Vim
 *.swp
 *.swo
+
+# Images
+*.ppm
