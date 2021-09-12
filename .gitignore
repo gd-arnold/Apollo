@@ -37,3 +37,7 @@
 
 # Images
 *.ppm
+
+# Visual Studio
+.vs/
+out/
