@@ -1,5 +1,5 @@
-#ifndef APOLLO_SHAPE_SPHERE_H
-#define APOLLO_SHAPE_SPHERE_H
+#ifndef APOLLO_SHAPES_SPHERE_H
+#define APOLLO_SHAPES_SPHERE_H
 
 #include "apollo.h"
 #include "shape.h"
