@@ -41,3 +41,6 @@
 # Visual Studio
 .vs/
 out/
+
+# Build directory
+build/
