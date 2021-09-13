@@ -30,6 +30,7 @@ class Camera;
 
 // Global constants
 static constexpr float Infinity = std::numeric_limits<float>::infinity();
+static constexpr float Epsilon = std::numeric_limits<float>::epsilon();
 static constexpr float PI = 3.14159265358979323846;
 static constexpr float InvPI = 0.31830988618379067154;
 
