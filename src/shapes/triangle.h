@@ -10,7 +10,8 @@ namespace apollo {
 class Triangle : public Shape 
 {
 public:
-	// NOTE: Verticies must be specified in COUNTER-CLOCKWISE order
+	// NOTE: Verticies must be specified in clockwise order (from the point of view of the camera) 
+	// if the triangle needs to be front-facing
 	Triangle(const Transform* objectToWorld, const Transform* worldToObject, bool reverseOrientation,
 		const Point3f v0, const Point3f v1, const Point3f v2);
 

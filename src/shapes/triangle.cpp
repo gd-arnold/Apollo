@@ -17,16 +17,16 @@ namespace apollo {
 		Vector3f v0v1 = v1 - v0;
 		Vector3f v0v2 = v2 - v0;
 		Vector3f translation = r.o - v0;
-		Vector3f pvec = Cross(r.d, v0v2);
+		Vector3f pvec = Cross(r.d, v0v1);
 		
-		float det = Dot(pvec, v0v1);
+		float det = Dot(pvec, v0v2);
 		
 		// If determinant is close to 0, the ray and the triangle are parallel
 		if (det < Epsilon)
 			return false;
 
 		float invDet = 1 / det;
-		Vector3f qvec = Cross(translation, v0v1) * invDet;
+		Vector3f qvec = Cross(translation, v0v2) * invDet;
 
 		// Compute barycentric coordinates
 		float u = Dot(translation, pvec) * invDet;
@@ -39,7 +39,7 @@ namespace apollo {
 
 		// Initialize surface interaction (if defined)
 		if (surf) {
-			float tHit = Dot(v0v2, qvec) * invDet;
+			float tHit = Dot(v0v1, qvec) * invDet;
 			Point3f p = r(tHit);
 
 			// TODO: Compute triangle partial derivatives
