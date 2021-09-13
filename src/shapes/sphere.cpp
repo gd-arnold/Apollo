@@ -53,7 +53,7 @@ namespace apollo {
 			Vector3f dpdv(p.z * std::cos(phi), p.z * std::sin(phi), -radius * std::sin(theta));
 
 			// Initialize SurfaceInteraction
-			*surf = (*objectToWorld)(SurfaceInteraction(p, Point2f(u, v), -ray.d, dpdu, dpdv, ray.time, this));
+			*surf = (*objectToWorld)(SurfaceInteraction(p, Point2f(u, v), -r.d, dpdu, dpdv, r.time, this));
 		}
 
 		return true;
