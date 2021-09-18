@@ -7,6 +7,9 @@
 #include <algorithm>
 #include <memory>
 #include <vector>
+#include <fstream>
+#include <string>
+#include <sstream>
 
 namespace apollo {
 

@@ -4,12 +4,52 @@
 
 namespace apollo {
 
+	// Initialize mesh explicitly
 	TriangleMesh::TriangleMesh(const Transform& objectToWorld, int nTriangles, const int* vertexIndices, int nVertices, const Point3f* P) 
 		: nTriangles(nTriangles), nVertices(nVertices), vertexIndices(vertexIndices, vertexIndices + 3 * nTriangles) {
 		// Tranform vertices to world space
-		p.reset(new Point3f[nVertices]);
+		vertices.reserve(nVertices);
 		for (int i = 0; i < nVertices; i++)
-			p[i] = objectToWorld(P[i]);
+			vertices.push_back(objectToWorld(P[i]));
+	}
+
+	// Initialize mesh by parsing .obj file
+	TriangleMesh::TriangleMesh(const Transform& objectToWorld, const std::string& filename) {
+		std::ifstream in(filename);
+		nTriangles = 0;
+		nVertices = 0;
+		if (!in) {
+			std::cerr << "Cannot open " << filename << std::endl;
+			exit(1);
+		}
+
+		std::string line;
+		while (std::getline(in, line)) {
+			std::string type;
+			std::istringstream iss(line);
+
+			iss >> type;
+
+			if (type == "v") {
+				Point3f vertex;
+				iss >> vertex.x;
+				iss >> vertex.y;
+				iss >> vertex.z;
+				vertices.push_back(objectToWorld(vertex));
+				nVertices++;
+			}
+			
+			else if (type == "f") {
+				Point3i face;
+				iss >> face.x;
+				iss >> face.y;
+				iss >> face.z;
+				vertexIndices.push_back(face.x - 1);
+				vertexIndices.push_back(face.y - 1);
+				vertexIndices.push_back(face.z - 1);
+				nTriangles++;
+			}
+		}
 	}
 
 	std::vector<std::shared_ptr<Shape>> CreateTriangleMesh(const Transform* objectToWorld, const Transform* worldToObject, bool reverseOrientation,
@@ -22,6 +62,17 @@ namespace apollo {
 		return triangles;
 	}
 
+	std::vector<std::shared_ptr<Shape>> CreateTriangleMeshByObj(const Transform* objectToWorld, const Transform* worldToObject, bool reverseOrientation,
+		const std::string& filename) {
+		std::shared_ptr<TriangleMesh> mesh = std::make_shared<TriangleMesh>(*objectToWorld, filename);
+		std::vector<std::shared_ptr<Shape>> triangles;
+		triangles.reserve(mesh->nTriangles);
+		for (int i = 0; i < mesh->nTriangles; i++)
+			triangles.push_back(std::make_shared<Triangle>(objectToWorld, worldToObject, reverseOrientation, mesh, i));
+
+		return triangles;
+	}
+
 	Triangle::Triangle(const Transform* objectToWorld, const Transform* worldToObject, bool reverseOrientation,
 		const std::shared_ptr<TriangleMesh>& mesh, int triangleIndex)
 		: Shape(objectToWorld, worldToObject, reverseOrientation), mesh(mesh) {
@@ -30,9 +81,9 @@ namespace apollo {
 
 	bool Triangle::Intersect(const Ray& ray, SurfaceInteraction* surf) const {
 		// Get triangle vertices
-		const Point3f& v0 = mesh->p[v[0]];
-		const Point3f& v1 = mesh->p[v[1]];
-		const Point3f& v2 = mesh->p[v[2]];
+		const Point3f& v0 = mesh->vertices[v[0]];
+		const Point3f& v1 = mesh->vertices[v[1]];
+		const Point3f& v2 = mesh->vertices[v[2]];
 
 		// Apply Möller–Trumbore ray-triangle intersection algorithm
 		//==========================================================
@@ -75,24 +126,24 @@ namespace apollo {
 	}
 
 	Bounds3f Triangle::ObjectBound() const {
-		const Point3f& v0 = mesh->p[v[0]];
-		const Point3f& v1 = mesh->p[v[1]];
-		const Point3f& v2 = mesh->p[v[2]];
+		const Point3f& v0 = mesh->vertices[v[0]];
+		const Point3f& v1 = mesh->vertices[v[1]];
+		const Point3f& v2 = mesh->vertices[v[2]];
 		return Bounds3f((*worldToObject)(v0), (*worldToObject)(v1)).Union((*worldToObject)(v2));
 	}
 
 	Bounds3f Triangle::WorldBound() const {
-		const Point3f& v0 = mesh->p[v[0]];
-		const Point3f& v1 = mesh->p[v[1]];
-		const Point3f& v2 = mesh->p[v[2]];
+		const Point3f& v0 = mesh->vertices[v[0]];
+		const Point3f& v1 = mesh->vertices[v[1]];
+		const Point3f& v2 = mesh->vertices[v[2]];
 		return Bounds3f(v0, v1).Union(v2);
 
 	}
 
 	float Triangle::Area() const {
-		const Point3f& v0 = mesh->p[v[0]];
-		const Point3f& v1 = mesh->p[v[1]];
-		const Point3f& v2 = mesh->p[v[2]];
+		const Point3f& v0 = mesh->vertices[v[0]];
+		const Point3f& v1 = mesh->vertices[v[1]];
+		const Point3f& v2 = mesh->vertices[v[2]];
 		Vector3f v0v1 = v1 - v0;
 		Vector3f v0v2 = v2 - v0;
 		return Cross(v0v1, v0v2).Length() * 0.5;

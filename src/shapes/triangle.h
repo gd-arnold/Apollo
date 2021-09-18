@@ -7,18 +7,25 @@
 
 namespace apollo {
 
-struct TriangleMesh {	
+class TriangleMesh {
+public:
+	// Initialize mesh explicitly
 	TriangleMesh(const Transform& objectToWorld, int nTriangles, const int* vertexIndices,
-		int nVertices, const Point3f* P);
+		int nVertices, const Point3f* vertices);
 
-	const int nTriangles, nVertices;
+	// Initialize mesh by parsing .obj file
+	TriangleMesh(const Transform& objectToWorld, const std::string& filename);
+public:
+	int nTriangles, nVertices;
 	std::vector<int> vertexIndices;
-	std::unique_ptr<Point3f[]> p;
+	std::vector<Point3f> vertices;
 };
 
-// NOTE: If the triangle is supposed to be front-facing, verticies must be specified in clockwise order (from the point of view of the camera) 
+// NOTE: If the triangles are supposed to be front-facing, verticies must be specified in clockwise order (from the point of view of the camera) 
 std::vector<std::shared_ptr<Shape>> CreateTriangleMesh(const Transform* objectToWorld, const Transform* worldToObject, bool reverseOrientation,
 	int nTriangles, const int* vertexIndicies, int nVerticies, const Point3f* p);
+std::vector<std::shared_ptr<Shape>> CreateTriangleMeshByObj(const Transform* objectToWorld, const Transform* worldToObject, bool reverseOrientation,
+	const std::string& filename);
 
 class Triangle : public Shape 
 {
