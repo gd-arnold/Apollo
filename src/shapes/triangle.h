@@ -7,13 +7,24 @@
 
 namespace apollo {
 
+struct TriangleMesh {	
+	TriangleMesh(const Transform& objectToWorld, int nTriangles, const int* vertexIndices,
+		int nVertices, const Point3f* P);
+
+	const int nTriangles, nVertices;
+	std::vector<int> vertexIndices;
+	std::unique_ptr<Point3f[]> p;
+};
+
+// NOTE: If the triangle is supposed to be front-facing, verticies must be specified in clockwise order (from the point of view of the camera) 
+std::vector<std::shared_ptr<Shape>> CreateTriangleMesh(const Transform* objectToWorld, const Transform* worldToObject, bool reverseOrientation,
+	int nTriangles, const int* vertexIndicies, int nVerticies, const Point3f* p);
+
 class Triangle : public Shape 
 {
 public:
-	// NOTE: Verticies must be specified in clockwise order (from the point of view of the camera) 
-	// if the triangle needs to be front-facing
 	Triangle(const Transform* objectToWorld, const Transform* worldToObject, bool reverseOrientation,
-		const Point3f v0, const Point3f v1, const Point3f v2);
+		const std::shared_ptr<TriangleMesh>& mesh, int triangleIndex);
 
 	// Check if a triangle is intersected by a ray
 	// Apollo implements the Möller–Trumbore ray-triangle intersection algorithm
@@ -27,7 +38,8 @@ public:
 	// Triangle surface area
 	float Area() const override;
 private:
-	Point3f v0, v1, v2;
+	std::shared_ptr<TriangleMesh> mesh;
+	const int* v;
 };
 
 }

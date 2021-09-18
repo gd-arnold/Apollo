@@ -6,6 +6,7 @@
 #include <limits>
 #include <algorithm>
 #include <memory>
+#include <vector>
 
 namespace apollo {
 
