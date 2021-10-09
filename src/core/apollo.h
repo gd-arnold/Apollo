@@ -31,6 +31,7 @@ class Primitive;
 class RGB;
 class Film;
 class Camera;
+class Light;
 
 // Global constants
 static constexpr float Infinity = std::numeric_limits<float>::infinity();
