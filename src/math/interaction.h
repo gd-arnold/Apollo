@@ -41,23 +41,16 @@ class Interaction {
 class SurfaceInteraction : public Interaction {
 	public:
 		SurfaceInteraction() {}
-		SurfaceInteraction(const Point3f &p, const Point2f &uv, const Vector3f &wo,
-				   const Vector3f &dpdu, const Vector3f &dpdv,
+		SurfaceInteraction(const Point3f& p, const Normal3f& n, const Point2f& uv, const Vector3f& wo,
 				   float time, const Shape *shape);
 
 		// Accessor methods
 		const Point2f& uv() const;
 		Point2f& uv();
-		const Vector3f& dpdu() const;
-		Vector3f& dpdu();
-		const Vector3f& dpdv() const;
-		Vector3f& dpdv();
 
 	private:
 		// (u,v) coords from the parameterization of the surface
 		Point2f _uv;
-		// Parametric partial derivatives of the point and surface normal
-		Vector3f _dpdu, _dpdv;
 	public:
 		// The shape that the point lies on
 		const Shape *shape = nullptr;

@@ -130,8 +130,6 @@ SurfaceInteraction Transform::operator()(const SurfaceInteraction& s) const {
 	result.n() = t(s.n()).Normalize();
 	result.wo() = t(s.wo());
 	result.uv() = s.uv();
-	result.dpdu() = t(s.dpdu());
-	result.dpdv() = t(s.dpdv());
 
 	return result;
 }

@@ -1,6 +1,7 @@
 #include "apollo.h"
 #include "triangle.h"
 #include "vector3.h"
+#include "normal3.h"
 
 namespace apollo {
 
@@ -114,12 +115,9 @@ namespace apollo {
 		if (surf) {
 			float tHit = Dot(v0v1, qvec) * invDet;
 			Point3f p = ray(tHit);
+			Normal3f n = Normal3(Cross(v0v1, v0v2));
 
-			// TODO: Compute triangle partial derivatives
-			Vector3f dpdu(0);
-			Vector3f dpdv(0);
-
-			*surf = SurfaceInteraction(p, Point2f(u, v), -ray.d, dpdu, dpdv, ray.time, this);
+			*surf = SurfaceInteraction(p, n, Point2f(u, v), -ray.d, ray.time, this);
 		}
 
 		return true;
